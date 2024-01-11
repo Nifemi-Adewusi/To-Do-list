@@ -2,11 +2,14 @@ import { nanoid } from "nanoid";
 import Form from "./Form";
 import { useState } from "react";
 import Items from "./Items";
+import { beautifulWords } from "./Word";
 import { toast, ToastContainer } from "react-toastify";
+import RandomWords from "./RandomWords";
 const App = () => {
   const setLocalStorage = (taskName) => {
     localStorage.setItem("task", JSON.stringify(taskName));
   };
+  const randomWords = function (words) {};
   // In case there's a key called task in the local storage, this is set as the default value, otherwise, an empty array is set as the default value
   const defaultValue = JSON.parse(localStorage.getItem("task") || "[]");
   const [items, setItems] = useState(defaultValue);
@@ -42,6 +45,7 @@ const App = () => {
   };
   return (
     <section className="section-center">
+      <RandomWords></RandomWords>
       <ToastContainer position="top-center"></ToastContainer>
       <Form addItem={addItem}></Form>
       <Items items={items} removeItem={removeItem} editItem={editItem}></Items>
