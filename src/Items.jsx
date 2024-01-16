@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import SingleItem from "./SingleItem";
-import { Functionality } from "./App";
+import { useCustomHookForContext } from "./App";
 
 const Items = () => {
-  const { items } = useContext(Functionality);
+  const { items } = useCustomHookForContext();
   return (
     <div className="items">
       {items.map((item) => {

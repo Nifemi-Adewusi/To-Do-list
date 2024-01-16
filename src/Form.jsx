@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { Functionality } from "./App";
+import { useCustomHookForContext } from "./App";
 
 const Form = () => {
   const [task, setNewTask] = useState("");
-  const { addItem } = useContext(Functionality);
+  const { addItem } = useCustomHookForContext();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!task) {

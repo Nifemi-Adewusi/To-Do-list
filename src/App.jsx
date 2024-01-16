@@ -1,11 +1,15 @@
 import { nanoid } from "nanoid";
 import Form from "./Form";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import Items from "./Items";
 import { beautifulWords } from "./Word";
 import { toast, ToastContainer } from "react-toastify";
 import RandomWords from "./RandomWords";
 export const Functionality = createContext();
+
+// Custom Hook For The Context.
+
+export const useCustomHookForContext = () => useContext(Functionality);
 
 const App = () => {
   const setLocalStorage = (taskName) => {

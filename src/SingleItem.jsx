@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { Functionality } from "./App";
+import { useCustomHookForContext } from "./App";
 
 const SingleItem = ({ item }) => {
-  const { removeItem, editItem } = useContext(Functionality);
+  const { removeItem, editItem } = useCustomHookForContext();
   return (
     <div className="single-item">
       <input
