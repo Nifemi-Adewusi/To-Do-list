@@ -1,4 +1,8 @@
-const SingleItem = ({ item, removeItem, editItem }) => {
+import { useContext } from "react";
+import { Functionality } from "./App";
+
+const SingleItem = ({ item }) => {
+  const { removeItem, editItem } = useContext(Functionality);
   return (
     <div className="single-item">
       <input

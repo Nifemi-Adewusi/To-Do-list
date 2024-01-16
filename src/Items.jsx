@@ -1,17 +1,13 @@
+import { useContext } from "react";
 import SingleItem from "./SingleItem";
+import { Functionality } from "./App";
 
-const Items = ({ items, editItem, removeItem }) => {
+const Items = () => {
+  const { items } = useContext(Functionality);
   return (
     <div className="items">
       {items.map((item) => {
-        return (
-          <SingleItem
-            key={item.id}
-            item={item}
-            removeItem={removeItem}
-            editItem={editItem}
-          ></SingleItem>
-        );
+        return <SingleItem key={item.id} item={item}></SingleItem>;
       })}
     </div>
   );

@@ -1,10 +1,12 @@
 import { nanoid } from "nanoid";
 import Form from "./Form";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import Items from "./Items";
 import { beautifulWords } from "./Word";
 import { toast, ToastContainer } from "react-toastify";
 import RandomWords from "./RandomWords";
+export const Functionality = createContext();
+
 const App = () => {
   const setLocalStorage = (taskName) => {
     localStorage.setItem("task", JSON.stringify(taskName));
@@ -44,12 +46,18 @@ const App = () => {
     setLocalStorage(newItems);
   };
   return (
-    <section className="section-center">
-      <RandomWords></RandomWords>
-      <ToastContainer position="top-center"></ToastContainer>
-      <Form addItem={addItem}></Form>
-      <Items items={items} removeItem={removeItem} editItem={editItem}></Items>
-    </section>
+    <Functionality.Provider value={{ editItem, addItem, items, removeItem }}>
+      <section className="section-center">
+        <RandomWords></RandomWords>
+        <ToastContainer position="top-center"></ToastContainer>
+        <Form></Form>
+        <Items
+          items={items}
+          removeItem={removeItem}
+          editItem={editItem}
+        ></Items>
+      </section>
+    </Functionality.Provider>
   );
 };
 export default App;

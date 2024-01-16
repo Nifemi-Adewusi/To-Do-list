@@ -3,28 +3,22 @@ import { beautifulWords, nightWords } from "./Word";
 
 const RandomWords = () => {
   const [randomWord, setRandomWord] = useState(() => {
-    // Retrieve the stored random word from localStorage, or generate a new one
-    const storedRandomWord = localStorage.getItem("randomWord");
-    return storedRandomWord || generateRandomWords(beautifulWords);
+    const generatedWord = localStorage.getItem("randomWord");
+    return generatedWord || generateRandomWords(beautifulWords);
   });
 
   const [lastGeneratedDate, setLastGeneratedDate] = useState(() => {
-    // Retrieve the last generated date from localStorage, or initialize to an empty string
     return localStorage.getItem("lastGeneratedDate") || "";
   });
 
   useEffect(() => {
     const currentDate = new Date().toLocaleDateString();
-
-    // Check if the random word needs to be regenerated for a new day
     if (lastGeneratedDate !== currentDate) {
-      const newRandomWord = generateRandomWords(beautifulWords);
-      setRandomWord(newRandomWord);
+      const randomWord = generateRandomWords(beautifulWords);
       setLastGeneratedDate(currentDate);
-
-      // Store the new random word and last generated date in localStorage
-      localStorage.setItem("randomWord", newRandomWord);
+      setRandomWord(randomWord);
       localStorage.setItem("lastGeneratedDate", currentDate);
+      localStorage.setItem("randomWord", randomWord);
     }
   }, [lastGeneratedDate]);
 
@@ -59,6 +53,8 @@ const RandomWords = () => {
       return output;
     }
   }
+  const currentDate = new Date().toLocaleDateString();
+  console.log(currentDate);
 
   const output = quote();
   return <p style={{ textAlign: "center", marginBottom: "10px" }}>{output}</p>;
